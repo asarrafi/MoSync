@@ -1941,6 +1941,7 @@ return 0; \
 		maIOCtl_case(maDBCursorGetColumnText);
 		maIOCtl_case(maDBCursorGetColumnInt);
 		maIOCtl_case(maDBCursorGetColumnDouble);
+		maIOCtl_case(maDBExecSQLParams);
 		maIOCtl_IX_WIDGET_caselist
 #ifdef SUPPORT_OPENGL_ES
 		maIOCtl_IX_OPENGL_ES_caselist;
