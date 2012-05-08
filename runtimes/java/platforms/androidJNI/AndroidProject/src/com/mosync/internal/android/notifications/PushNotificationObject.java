@@ -24,7 +24,7 @@ import android.content.Context;
 import android.content.Intent;
 
 import com.mosync.java.android.C2DMReceiver;
-import com.mosync.java.android.MoSync;
+import com.mosync.java.android.SplashScreenActivity;
 
 /**
  * An instance of a push notification.
@@ -63,7 +63,7 @@ public class PushNotificationObject
 		// Hide the notification after its selected.
 		notification.flags |= Notification.FLAG_AUTO_CANCEL;
 
-		Intent intent = new Intent(context, MoSync.class);
+		Intent intent = new Intent(context, SplashScreenActivity.class);
 		intent.putExtra(C2DMReceiver.MOSYNC_INTENT_EXTRA_MESSAGE, mMessage);
 		intent.putExtra(C2DMReceiver.MOSYNC_INTENT_EXTRA_NOTIFICATION, true);
 		// Send also the notification handle so it can later be used at posting events.

@@ -216,15 +216,15 @@ static void injectIcons(const SETTINGS& s, const RuntimeInfo& ri) {
 			//36x36 for low-density (ldpi)
 			//48x48 for medium-density (mdpi)
 			//72x72 for high-density (hdpi)
-			/*sizes.push_back("36x36");
+			sizes.push_back("36x36");
 			sizes.push_back("48x48");
 			sizes.push_back("72x72");
 			directories.push_back("/res/drawable-ldpi");
 			directories.push_back("/res/drawable-mdpi");
-			directories.push_back("/res/drawable-hdpi");*/
+			directories.push_back("/res/drawable-hdpi");
 		}
 
-		if (ri.androidVersion >= 8) {
+		if (ri.androidVersion >= 7) {
 			//96x96 for extra high-density (xhdpi)
 			sizes.push_back("96x96");
 			directories.push_back("/res/drawable-xhdpi");
@@ -260,14 +260,14 @@ static void writeManifest(const char* filename, const SETTINGS& s, const Runtime
 	file <<"<?xml version=\"1.0\" encoding=\"utf-8\"?>\n"
 		<<"<manifest xmlns:android=\"http://schemas.android.com/apk/res/android\"\n"
 		<<"\tpackage=\"" << packageName << "\"\n"
-		<<"\tandroid:versionCode=\"" << versionCode << "\"\n"
+			<<"\tandroid:versionCode=\"" << versionCode << "\"\n"
 		<<"\tandroid:versionName=\"" << version << "\">\n"
 		<<"\t<application\n";
 	if (s.icon) {
 		file <<"\t\tandroid:icon=\"@drawable/icon\"\n";
 	}
 	file <<"\t\tandroid:label=\"@string/app_name\">\n"
-		<<"\t\t<activity android:name=\".MoSync\"\n"
+		<<"\t\t<activity android:name=\".SplashScreenActivity\"\n"
 		// Use portrait orientation as default.
 		<<"\t\t\tandroid:screenOrientation=\"portrait\"\n"
 		<<"\t\t\tandroid:configChanges=\"keyboardHidden|orientation\"\n"
@@ -298,7 +298,7 @@ static void writeManifest(const char* filename, const SETTINGS& s, const Runtime
 	writeC2DMReceiver(file, packageName);
 
 	file <<"\t</application>\n"
-		<<"\t<uses-sdk android:minSdkVersion=\""<<ri.androidVersion<<"\" />\n"
+		<<"\t<uses-sdk android:minSdkVersion=\""<< "3" <<"\" />\n"
 		;
 
 	// Adding the support-screens for cupcake would lead to problems.
@@ -337,36 +337,22 @@ static void writePermissions(ostream& stream, const SETTINGS& s, const RuntimeIn
 	set<string> permissionSet = set<string>();
 	parsePermissions(permissionSet, s.permissions);
 
-	writePermission(stream, isPermissionSet(permissionSet, VIBRATE), "android.permission.VIBRATE");
-	writePermission(stream, isPermissionSet(permissionSet, VIBRATE_DEPRECATED), "android.permission.VIBRATE");
-	writePermission(stream, isPermissionSet(permissionSet, INTERNET), "android.permission.INTERNET");
-	writePermission(stream, isPermissionSet(permissionSet, INTERNET), "android.permission.ACCESS_NETWORK_STATE");
-	writePermission(stream, isPermissionSet(permissionSet, LOCATION_COARSE), "android.permission.ACCESS_COARSE_LOCATION");
-	writePermission(stream, isPermissionSet(permissionSet, LOCATION_FINE), "android.permission.ACCESS_FINE_LOCATION");
-	writePermission(stream, isPermissionSet(permissionSet, POWER_MANAGEMENT), "android.permission.BATTERY_STATS");
-	writePermission(stream, isPermissionSet(permissionSet, CALENDAR_READ), "android.permission.READ_CALENDAR");
-	writePermission(stream, isPermissionSet(permissionSet, CALENDAR_WRITE), "android.permission.WRITE_CALENDAR");
-	writePermission(stream, isPermissionSet(permissionSet, CONTACTS_READ), "android.permission.READ_CONTACTS");
-	writePermission(stream, isPermissionSet(permissionSet, CONTACTS_WRITE), "android.permission.WRITE_CONTACTS");
-	writePermission(stream, isPermissionSet(permissionSet, SMS_READ), "android.permission.READ_SMS");
-	writePermission(stream, isPermissionSet(permissionSet, SMS_SEND), "android.permission.SEND_SMS");
-	writePermission(stream, isPermissionSet(permissionSet, SMS_RECEIVE), "android.permission.RECEIVE_SMS");
-	writePermission(stream, isPermissionSet(permissionSet, CAMERA), "android.permission.CAMERA");
-	writePermission(stream, isPermissionSet(permissionSet, HOMESCREEN), "android.permission.GET_TASKS");
-	writePermission(stream, isPermissionSet(permissionSet, HOMESCREEN), "android.permission.SET_WALLPAPER");
-	writePermission(stream, isPermissionSet(permissionSet, HOMESCREEN), "android.permission.SET_WALLPAPER_HINTS");
-	writePermission(stream, isPermissionSet(permissionSet, HOMESCREEN), "com.android.launcher.permission.INSTALL_SHORTCUT");
-	writePermission(stream, isPermissionSet(permissionSet, HOMESCREEN), "com.android.launcher.permission.UNINSTALL_SHORTCUT");
-	writePermission(stream, isPermissionSet(permissionSet, AUTOSTART), "android.permission.RECEIVE_BOOT_COMPLETED");
-	writePermission(stream, isPermissionSet(permissionSet, AUTOSTART_DEPRECATED), "android.permission.RECEIVE_BOOT_COMPLETED");
-	writePermission(stream, isPermissionSet(permissionSet, PHONE_CALLS), "android.permission.CALL_PHONE");
+	writePermission(stream, true, "android.permission.READ_PHONE_STATE");
+	writePermission(stream, true, "android.permission.CHANGE_NETWORK_STATE");
+	writePermission(stream, true, "android.permission.ACCESS_NETWORK_STATE");
+	writePermission(stream, true, "android.permission.UPDATE_DEVICE_STATS");
+	writePermission(stream, true, "android.permission.ACCESS_WIFI_STATE");
+	writePermission(stream, true, "android.permission.CHANGE_WIFI_STATE");
+	writePermission(stream, true, "android.permission.WRITE_SETTINGS");
+	writePermission(stream, true, "android.permission.INTERNET");
+	writePermission(stream, true, "android.permission.WAKE_LOCK");
 
 	// Only add this for android 1.6 and higher.
-	if (ri.androidVersion >= 4)
+	/*if (ri.androidVersion >= 4)
 	{
 		// And always enable it to be able to log in debug runtime
 		writePermission(stream, s.debug || isPermissionSet(permissionSet, FILE_STORAGE_WRITE), "android.permission.WRITE_EXTERNAL_STORAGE");
-	}
+	}*/
 
 	// Only add this for android 2.0 and higher.
 	if (ri.androidVersion >= 7)
@@ -380,7 +366,7 @@ static void writePermissions(ostream& stream, const SETTINGS& s, const RuntimeIn
 	//}
 
 	// Always add this.
-	writePermission(stream, true, "android.permission.READ_PHONE_STATE");
+//	writePermission(stream, true, "android.permission.READ_PHONE_STATE");
 
 	// Permission for Google C2DM Service for push notifications.
 	if (isPermissionSet(permissionSet, PUSH_NOTIFICATIONS))

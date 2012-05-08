@@ -1,6 +1,6 @@
 package com.mosync.internal.android.nfc;
 
-import com.mosync.java.android.MoSync;
+import com.mosync.java.android.SplashScreenActivity;
 
 import android.app.Activity;
 import android.app.PendingIntent;

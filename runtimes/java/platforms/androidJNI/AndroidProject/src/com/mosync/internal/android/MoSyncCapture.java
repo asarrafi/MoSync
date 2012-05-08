@@ -25,7 +25,7 @@ import java.io.OutputStream;
 import java.util.Hashtable;
 
 import com.mosync.internal.android.MoSyncThread.ImageCache;
-import com.mosync.java.android.MoSync;
+import com.mosync.java.android.SplashScreenActivity;
 import com.mosync.nativeui.core.NativeUI;
 import com.mosync.nativeui.util.properties.IntConverter;
 import com.mosync.nativeui.util.properties.InvalidPropertyValueException;
@@ -731,7 +731,7 @@ public class MoSyncCapture
 
 		// Launch the camera application.
 		try{
-			getActivity().startActivityForResult(videoIntent, MoSync.CAPTURE_MODE_RECORD_VIDEO_REQUEST);
+			getActivity().startActivityForResult(videoIntent, SplashScreenActivity.CAPTURE_MODE_RECORD_VIDEO_REQUEST);
 		}catch(ActivityNotFoundException anfe)
 		{
 			Log.e("@@MoSync","maCaptureAction error: There is no video recording available.");
@@ -766,7 +766,7 @@ public class MoSyncCapture
 		cameraIntent.putExtra(MediaStore.EXTRA_OUTPUT, mImageUri);
 
 		// Launch the camera application.
-		getActivity().startActivityForResult(cameraIntent, MoSync.CAPTURE_MODE_TAKE_PICTURE_REQUEST);
+		getActivity().startActivityForResult(cameraIntent, SplashScreenActivity.CAPTURE_MODE_TAKE_PICTURE_REQUEST);
 	}
 
 	/**

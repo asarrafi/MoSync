@@ -32,7 +32,7 @@ import com.mosync.internal.android.MoSyncFont.MoSyncFontHandle;
 import com.mosync.internal.android.MoSyncThread.ImageCache;
 import com.mosync.internal.android.MoSyncView;
 import com.mosync.internal.generated.IX_WIDGET;
-import com.mosync.java.android.MoSync;
+import com.mosync.java.android.SplashScreenActivity;
 import com.mosync.nativeui.ui.factories.CameraPreviewFactory;
 import com.mosync.nativeui.ui.factories.ViewFactory;
 import com.mosync.nativeui.ui.widgets.ButtonWidget;
@@ -728,7 +728,7 @@ public class NativeUI
 		byte[] ba = result.getBytes();
 
 		// Write string to MoSync memory.
-		MoSyncThread mosyncThread = ((MoSync) m_activity).getMoSyncThread( );
+		MoSyncThread mosyncThread = ((SplashScreenActivity) m_activity).getMoSyncThread( );
 		mosyncThread.mMemDataSection.position( memBuffer );
 		mosyncThread.mMemDataSection.put( ba );
 		mosyncThread.mMemDataSection.put( (byte)0 );

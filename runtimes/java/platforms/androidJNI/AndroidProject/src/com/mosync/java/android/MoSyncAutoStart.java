@@ -46,7 +46,7 @@ public class MoSyncAutoStart extends BroadcastReceiver
 			public void run()
 			{
 				Log.i("MoSync", "MoSyncAutoStart -> launching application");
-				Intent launcherIntent = new Intent(context, MoSync.class);
+				Intent launcherIntent = new Intent(context, SplashScreenActivity.class);
 				launcherIntent.addFlags(
 					Intent.FLAG_ACTIVITY_NEW_TASK | 
 					Intent.FLAG_ACTIVITY_REORDER_TO_FRONT |

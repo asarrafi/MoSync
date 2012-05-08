@@ -60,7 +60,7 @@ public class C2DMReceiver extends C2DMBaseReceiver
 	{
 		Log.e("@@MoSync","Launch MoSync activity");
 
-		Intent launcherIntent = new Intent(context, MoSync.class);
+		Intent launcherIntent = new Intent(context, SplashScreenActivity.class);
 		launcherIntent.setAction(C2DMBaseReceiver.C2DM_INTENT);
 		// Add the push message to the intent.
 		launcherIntent.putExtra(MOSYNC_INTENT_EXTRA_MESSAGE, message);

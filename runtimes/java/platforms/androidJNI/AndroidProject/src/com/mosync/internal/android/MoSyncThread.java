@@ -115,7 +115,7 @@ import com.mosync.internal.android.nfc.MoSyncNFC;
 import com.mosync.internal.android.nfc.MoSyncNFCService;
 import com.mosync.internal.generated.IX_OPENGL_ES;
 import com.mosync.internal.generated.IX_WIDGET;
-import com.mosync.java.android.MoSync;
+import com.mosync.java.android.SplashScreenActivity;
 import com.mosync.java.android.MoSyncPanicDialog;
 import com.mosync.java.android.MoSyncService;
 import com.mosync.java.android.TextBox;
@@ -200,7 +200,7 @@ public class MoSyncThread extends Thread
 	/**
 	 * This is the MoSync Activity.
 	 */
-	private final MoSync mContext;
+	private final SplashScreenActivity mContext;
 
 	/**
 	 * The standard MoSync view.
@@ -335,7 +335,7 @@ public class MoSyncThread extends Thread
 	 */
 	public MoSyncThread(Context context, Handler handler) throws Exception
 	{
-		mContext = (MoSync) context;
+		mContext = (SplashScreenActivity) context;
 
 		// TODO: Clean this up! The static reference should be in one place.
 		// Now the instance of MoSyncThread is passed to many classes and

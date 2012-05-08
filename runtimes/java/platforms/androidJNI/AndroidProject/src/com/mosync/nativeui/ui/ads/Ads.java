@@ -24,7 +24,7 @@ import com.google.ads.AdSize;
 import com.google.ads.AdView;
 
 import com.mosync.internal.android.MoSyncThread;
-import com.mosync.java.android.MoSync;
+import com.mosync.java.android.SplashScreenActivity;
 import com.mosync.nativeui.ui.widgets.Layout;
 import com.mosync.nativeui.ui.widgets.Widget;
 import com.mosync.nativeui.util.HandleTable;
@@ -306,7 +306,7 @@ public class Ads
 		byte[] byteArray = result.getBytes();
 
 		// Write string to MoSync memory.
-		MoSyncThread mosyncThread = ((MoSync) m_activity).getMoSyncThread( );
+		MoSyncThread mosyncThread = ((SplashScreenActivity) m_activity).getMoSyncThread( );
 		mosyncThread.mMemDataSection.position( memBuffer );
 		mosyncThread.mMemDataSection.put( byteArray );
 		mosyncThread.mMemDataSection.put( (byte)0 );

@@ -26,7 +26,7 @@ import android.content.Intent;
 import android.os.IBinder;
 import android.util.Log;
 
-import com.mosync.java.android.MoSync;
+import com.mosync.java.android.SplashScreenActivity;
 
 import static com.mosync.internal.generated.MAAPI_consts.MA_NOTIFICATION_RES_OK;
 import static com.mosync.internal.generated.MAAPI_consts.MA_NOTIFICATION_RES_ERROR;
@@ -234,7 +234,7 @@ public class LocalNotificationsService extends Service
 			mLatestNotification.trigger();
 
 			Context context = getApplicationContext();
-			Intent intent = new Intent(context, MoSync.class);
+			Intent intent = new Intent(context, SplashScreenActivity.class);
 			intent.addFlags(
 				Intent.FLAG_ACTIVITY_NEW_TASK |
 				Intent.FLAG_ACTIVITY_REORDER_TO_FRONT |

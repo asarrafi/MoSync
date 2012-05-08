@@ -25,7 +25,7 @@ import android.view.View;
 
 import com.mosync.internal.android.MoSyncThread.ImageCache;
 import com.mosync.internal.generated.IX_WIDGET;
-import com.mosync.java.android.MoSync;
+import com.mosync.java.android.SplashScreenActivity;
 import com.mosync.nativeui.core.NativeUI;
 import com.mosync.nativeui.core.NativeUI.RootViewReplacedListener;
 import com.mosync.nativeui.ui.widgets.ScreenWidget;
@@ -508,7 +508,7 @@ public class MoSyncNativeUI implements RootViewReplacedListener
 	@Override
 	public void rootViewReplaced(View newRoot)
 	{
-		((MoSync) getActivity()).setRootView( newRoot );
+		((SplashScreenActivity) getActivity()).setRootView( newRoot );
 	}
 
 	public Widget getCameraPreview(final int handle)

@@ -225,7 +225,7 @@ public class MoSyncService extends Service
 		Context context = getApplicationContext();
 		CharSequence contentTitle = sNotificationTitle;
 		CharSequence contentText = sNotificationText;
-		Intent intent = new Intent(context, MoSync.class);
+		Intent intent = new Intent(context, SplashScreenActivity.class);
 		intent.addFlags(
 			Intent.FLAG_ACTIVITY_NEW_TASK | 
 			Intent.FLAG_ACTIVITY_REORDER_TO_FRONT |

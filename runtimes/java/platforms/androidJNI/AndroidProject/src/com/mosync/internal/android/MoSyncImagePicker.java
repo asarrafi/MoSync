@@ -30,7 +30,7 @@ import android.net.Uri;
 import android.util.Log;
 
 import com.mosync.internal.android.MoSyncThread.ImageCache;
-import com.mosync.java.android.MoSync;
+import com.mosync.java.android.SplashScreenActivity;
 
 /**
  * Helper class for maImagePickerOpen syscall.
@@ -65,7 +65,7 @@ public class MoSyncImagePicker {
         intent.setType("image/*");
         intent.setAction(Intent.ACTION_GET_CONTENT);
 
-        mMoSyncThread.getActivity().startActivityForResult(intent, MoSync.PICK_IMAGE_REQUEST);
+        mMoSyncThread.getActivity().startActivityForResult(intent, SplashScreenActivity.PICK_IMAGE_REQUEST);
 	}
 
 	/**

@@ -9,7 +9,7 @@ import android.nfc.Tag;
 import android.os.Parcelable;
 import android.util.Log;
 
-import com.mosync.java.android.MoSync;
+import com.mosync.java.android.SplashScreenActivity;
 
 public class MoSyncNFCService extends IntentService {
 
@@ -72,7 +72,7 @@ public class MoSyncNFCService extends IntentService {
 	}
 
 	private static void activateMoSyncApp(Context context) {
-		Intent launcherIntent = new Intent(context, MoSync.class);
+		Intent launcherIntent = new Intent(context, SplashScreenActivity.class);
 		launcherIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK
 				| Intent.FLAG_ACTIVITY_REORDER_TO_FRONT
 				| Intent.FLAG_ACTIVITY_SINGLE_TOP);
