@@ -369,6 +369,20 @@ maDBCursorGetColumnDouble()<br>
 
 <tr style="background-color: rgb(207, 226, 243);">
 <td>
+<strong>In-App Purchases</strong>
+</td>
+<td>Purchase products from within your application.<br>
+</td>
+<td>maPurchaseSupported(), maPurchaseCreate(), maPurchaseSetPublicKey(), maPurchaseRequest(), maPurchaseVerifyReceipt(), maPurchaseGetField(), maPurchaseSetStoreURL(), maPurchaseGetName(), maPurchaseRestoreTransactions(), maPurchaseDestroy()<br>
+</td>
+<td>\ref IAP<br>
+</td>
+<td>\ref PurchaseAPI<br>
+</td>
+</tr>
+
+<tr style="background-color: rgb(207, 226, 243);">
+<td>
 <strong>Device fonts</strong>
 </td>
 <td>Set device fonts for maDrawText(), maDrawTextW(), and for NativeUI widgets.<br>
@@ -394,6 +408,21 @@ maDBCursorGetColumnDouble()<br>
 <td><br>
 </td>
 </tr>
+
+<tr style="background-color: rgb(207, 226, 243);">
+<td>
+<strong>Sensor</strong>
+</td>
+<td>Read device sensors data.<br>
+</td>
+<td>maSensorStart(), maSensorStop()<br>
+</td>
+<td><br>
+</td>
+<td>\ref SensorAPI<br>
+</td>
+</tr>
+
 <tr style="background-color: rgb(118, 29, 88);">
 <td colspan="2"><strong><span style="color: rgb(255, 255, 255);">User Interface APIs</span></strong><strong><br>
 </strong></td>
@@ -411,7 +440,7 @@ maDBCursorGetColumnDouble()<br>
 </td>
 <td>Access to device specific UI system. Currently only available for Android, iOS and Windows Phone 7.<br>
 </td>
-<td>maWidgetCreate(), maWidgetDestroy(), maWidgetAddChild(), maWidgetInsertChild(), maWidgetRemoveChild(), maWidgetScreenShow(), maWidgetStackScreenPush(), maWidgetStackScreenPop(), maWidgetSetProperty(), maWidgetGetProperty()<br>
+<td>maWidgetCreate(), maWidgetDestroy(), maWidgetAddChild(), maWidgetInsertChild(), maWidgetRemoveChild(), maWidgetScreenShow(), maWidgetStackScreenPush(), maWidgetStackScreenPop(), maWidgetSetProperty(), maWidgetGetProperty(), maWidgetModalDialogShow(), maWidgetModalDialogHide(), maWidgetScreenAddOptionsMenuItem()<br>
 </td>
 <td>IX_WIDGET.h<br> NativeUI <br>
 </td>
