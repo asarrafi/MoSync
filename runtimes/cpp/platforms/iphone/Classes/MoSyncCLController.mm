@@ -36,18 +36,27 @@ Software Foundation, 59 Temple Place - Suite 330, Boston, MA
            fromLocation:(CLLocation *)oldLocation
 {
     NSLog(@"Location: %@", [newLocation description]);
-	
+
 	MAEvent event;
 	event.type = EVENT_TYPE_LOCATION;
 	MALocation* location = new MALocation;
 	event.data = (int)location;
-	
+
 	location->state = MA_LOC_QUALIFIED;
 	location->lat = newLocation.coordinate.latitude;
 	location->lon = newLocation.coordinate.longitude;
 	location->horzAcc = newLocation.horizontalAccuracy;
 	location->vertAcc = newLocation.verticalAccuracy;
 	location->alt = newLocation.altitude;
+
+	double speed = newLocation.speed;
+	if(speed < 0.0) speed = 0.0;
+	location->speed = speed;
+
+	double bearing = newLocation.course;
+	if(bearing < 0.0) bearing = 0.0;
+	location->bearing = bearing;
+
 	Base::gEventQueue.put(event);
 }
 
@@ -57,10 +66,10 @@ Software Foundation, 59 Temple Place - Suite 330, Boston, MA
 	//NSLog(@"Error: %@", [error description]);
 	MAEvent event;
 	event.type = EVENT_TYPE_LOCATION_PROVIDER;
-	
+
 	if(error.code == kCLErrorLocationUnknown) {
 		event.state = MA_LPS_TEMPORARILY_UNAVAILABLE;
-		
+
 	} else if(error.code == kCLErrorDenied) {
 		event.state = MA_LPS_OUT_OF_SERVICE;
 	} else if(error.code == kCLErrorHeadingFailure) {

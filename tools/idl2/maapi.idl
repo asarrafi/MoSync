@@ -2435,6 +2435,16 @@ interface MAAPI {
 			double horzAcc;
 			double vertAcc;
 			float alt;
+			/*
+			* The speed of the device in meters per second.
+			* A value of 0.0 means that the speed is unavailable or inaccurate.
+			*/
+			double speed;
+			/*
+			* The bearing/heading for the device in degress East of North.
+			* A value of 0.0 means that the bearing/heading is unavailable or inaccurate.
+			*/
+			double bearing;
 		}
 
 		constset int MA_LOC_ {
