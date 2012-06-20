@@ -4272,6 +4272,19 @@ public class MoSyncThread extends Thread
 		return 1;
 	}
 
+	public int maStartApplication(final String application, final String messageName, final String message)
+	{
+		PackageManager pm = mContext.getPackageManager();
+		if(pm == null)
+			return -2;
+
+		Intent intent = pm.getLaunchIntentForPackage(application);
+		intent.putExtra(messageName, message);
+		mContext.startActivity(intent);
+
+		return 1;
+	}
+
 	/**
 	 * Internal wrapper for maWidgetCreate that runs
 	 * the call in the UI thread.

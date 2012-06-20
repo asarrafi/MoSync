@@ -757,6 +757,33 @@ namespace Base
 		return (int)result;
 	}
 
+	int _maStartApplication(const char* application, const char* messageName, const char* message,
+							 JNIEnv* jNIEnv, jobject jThis)
+	{
+		// Get the Java method
+		jstring jstrApplication = jNIEnv->NewStringUTF(application);
+		jstring jstrMessageName = jNIEnv->NewStringUTF(messageName);
+		jstring jstrMessage = jNIEnv->NewStringUTF(message);
+		jclass cls = jNIEnv->GetObjectClass(jThis);
+		jmethodID methodID = jNIEnv->GetMethodID(cls, "maStartApplication",
+										"(Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)I");
+		if (methodID == 0)
+		{
+			return 0;
+		}
+
+		// Call the Java method
+		int result = jNIEnv->CallIntMethod(jThis, methodID, jstrApplication, jstrMessageName, jstrMessage);
+
+		// Delete allocated memory
+		jNIEnv->DeleteLocalRef(cls);
+		jNIEnv->DeleteLocalRef(jstrApplication);
+		jNIEnv->DeleteLocalRef(jstrMessageName);
+		jNIEnv->DeleteLocalRef(jstrMessage);
+
+		return result;
+	}
+
 	int _maWidgetCreate(const char *widgetType, JNIEnv* jNIEnv, jobject jThis)
 	{
 		// Get the Java method
