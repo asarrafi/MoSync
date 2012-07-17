@@ -223,7 +223,7 @@ namespace Base
 
 	int _maWakeLock(int flag, JNIEnv* jNIEnv, jobject jThis);
 
-	int _maStartApplication(const char* application, const char* messageName, const char* message,
+	int _maApplicationOpen(const char* application, const char* message, const char* messageName,
 							 JNIEnv* jNIEnv, jobject jThis);
 
 	int _maTextBox(const wchar* title, const wchar* inText, int outText,

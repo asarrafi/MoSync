@@ -1933,9 +1933,9 @@ namespace Base
 			SYSLOG("maIOCtl_maWakeLock");
 			return _maWakeLock(a, mJNIEnv, mJThis);
 
-		case maIOCtl_maStartApplication:
-			SYSLOG("maIOCtl_maStartApplication");
-			return _maStartApplication(
+		case maIOCtl_maApplicationOpen:
+			SYSLOG("maIOCtl_maApplicationOpen");
+			return _maApplicationOpen(
 				SYSCALL_THIS->GetValidatedStr(a),
 				SYSCALL_THIS->GetValidatedStr(b),
 				SYSCALL_THIS->GetValidatedStr(c),

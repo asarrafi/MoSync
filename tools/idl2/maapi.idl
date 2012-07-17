@@ -8862,11 +8862,14 @@ group CameraFunctions "Camera Functions" {
 		}
 
 		/**
-		 * Starts an application and sends a string to it
+		 * Opens an application and sends a string of information to it.
+		 * NOTE:
+		 * On Android the application name is the package name on the applications
+		 * you wanna open.
 		 * @param application, the application to start. In Android the activity.
 		 * @param message, the message to send the application when it has started.
 		 */
-		 int maStartApplication(in MAString application, in MAString messageName, in MAString message);
+		 int maApplicationOpen(in MAString application, in MAString message, in MAString messageName);
 
 group OpenGLES "OpenGLES" {
 #include "opengl_non_generated.idl"

@@ -757,15 +757,15 @@ namespace Base
 		return (int)result;
 	}
 
-	int _maStartApplication(const char* application, const char* messageName, const char* message,
+	int _maApplicationOpen(const char* application, const char* message, const char* messageName,
 							 JNIEnv* jNIEnv, jobject jThis)
 	{
 		// Get the Java method
 		jstring jstrApplication = jNIEnv->NewStringUTF(application);
-		jstring jstrMessageName = jNIEnv->NewStringUTF(messageName);
 		jstring jstrMessage = jNIEnv->NewStringUTF(message);
+		jstring jstrMessageName = jNIEnv->NewStringUTF(messageName);
 		jclass cls = jNIEnv->GetObjectClass(jThis);
-		jmethodID methodID = jNIEnv->GetMethodID(cls, "maStartApplication",
+		jmethodID methodID = jNIEnv->GetMethodID(cls, "maApplicationOpen",
 										"(Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)I");
 		if (methodID == 0)
 		{
@@ -773,13 +773,13 @@ namespace Base
 		}
 
 		// Call the Java method
-		int result = jNIEnv->CallIntMethod(jThis, methodID, jstrApplication, jstrMessageName, jstrMessage);
+		int result = jNIEnv->CallIntMethod(jThis, methodID, jstrApplication, jstrMessage, jstrMessageName);
 
 		// Delete allocated memory
 		jNIEnv->DeleteLocalRef(cls);
 		jNIEnv->DeleteLocalRef(jstrApplication);
-		jNIEnv->DeleteLocalRef(jstrMessageName);
 		jNIEnv->DeleteLocalRef(jstrMessage);
+		jNIEnv->DeleteLocalRef(jstrMessageName);
 
 		return result;
 	}
