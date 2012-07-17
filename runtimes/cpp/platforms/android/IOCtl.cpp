@@ -3867,11 +3867,11 @@ namespace Base
 		return (int)result;
 	}
 
-	int _maEncodeImage(MAHandle placeHolder, MAHandle data, int mimeType, int width, int height, JNIEnv* jNIEnv, jobject jThis)
+	int _maImageEncode(MAHandle placeHolder, MAHandle data, int mimeType, int width, int height, JNIEnv* jNIEnv, jobject jThis)
 	{
 		// Get the Java method
 		jclass cls = jNIEnv->GetObjectClass(jThis);
-		jmethodID methodID = jNIEnv->GetMethodID(cls, "maEncodeImage", "(IIIII)I");
+		jmethodID methodID = jNIEnv->GetMethodID(cls, "maImageEncode", "(IIIII)I");
 		if (methodID == 0)
 		{
 			return 0;

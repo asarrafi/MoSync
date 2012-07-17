@@ -2225,7 +2225,7 @@ public class MoSyncThread extends Thread
 	/**
 	 * Image Encoder function
 	 */
-	int maEncodeImage(int placeHolder, int dataHandle, int mimeType, int width, int height)
+	int maImageEncode(int placeHolder, int dataHandle, int mimeType, int width, int height)
 	{
 		SYSLOG("maEncodeImage");
 

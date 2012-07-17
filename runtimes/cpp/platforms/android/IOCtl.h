@@ -1069,7 +1069,7 @@ namespace Base
 		JNIEnv* jNIEnv,
 		jobject jThis);
 
-	int _maEncodeImage(MAHandle placeHolder, MAHandle data, int mimeType, int width, int height, JNIEnv* jNIEnv, jobject jThis);
+	int _maImageEncode(MAHandle placeHolder, MAHandle data, int mimeType, int width, int height, JNIEnv* jNIEnv, jobject jThis);
 
 	// AUDIO API
 

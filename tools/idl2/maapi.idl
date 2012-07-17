@@ -11448,7 +11448,7 @@ constset int MA_IMAGE_ENCODING_ {
 * \param width width of the image to be created
 * \param height height of the image to be created
 */
-int maEncodeImage(in MAHandle placeholder, in MAHandle data, in int mimeType, in int width, in int height);
+int maImageEncode(in MAHandle placeholder, in MAHandle data, in int mimeType, in int width, in int height);
 
 
 group PurchaseAPI "Purchase API" {

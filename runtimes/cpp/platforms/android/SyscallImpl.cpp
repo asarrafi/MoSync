@@ -3073,10 +3073,10 @@ namespace Base
 				mJNIEnv,
 				mJThis);
 
-		case maIOCtl_maEncodeImage:
+		case maIOCtl_maImageEncode:
 			int width = SYSCALL_THIS->GetValidatedStackValue(0);
 			int height = SYSCALL_THIS->GetValidatedStackValue(4);
-			return _maEncodeImage(
+			return _maImageEncode(
 				a,
 				b,
 				c,
