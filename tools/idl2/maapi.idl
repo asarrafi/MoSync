@@ -11432,6 +11432,25 @@ group CaptureAPI "Capture API" {
 
 } // End of Capture API
 
+//Image encoding API
+constset int MA_IMAGE_ENCODING_ {
+	/// Specifies that maEncodeImage should encode the data into PNG format
+	PNG = 0;
+	/// Specifies that maEncodeImage should encode the data into Jpeg format
+	JPG = 1;
+}
+
+/**
+* \brief Encodes a data handle into a compressed image format and stores the result into a placeholder.
+* \param data handle for the input data
+* \param placeholder the placeholder that will be used for storing the compressed image
+* \param mimeType type of the compression that should be used. MA_IMAGE_ENCODING_JPG, or MA_IMAGE_ENCODING_PNG
+* \param width width of the image to be created
+* \param height height of the image to be created
+*/
+int maEncodeImage(in MAHandle placeholder, in MAHandle data, in int mimeType, in int width, in int height);
+
+
 group PurchaseAPI "Purchase API" {
 #include "purchase.idl"
 } // End of Purchase API

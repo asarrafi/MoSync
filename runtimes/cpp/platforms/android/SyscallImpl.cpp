@@ -3073,6 +3073,18 @@ namespace Base
 				mJNIEnv,
 				mJThis);
 
+		case maIOCtl_maEncodeImage:
+			int width = SYSCALL_THIS->GetValidatedStackValue(0);
+			int height = SYSCALL_THIS->GetValidatedStackValue(4);
+			return _maEncodeImage(
+				a,
+				b,
+				c,
+				width,
+				height,
+				mJNIEnv,
+				mJThis);
+
 		} // End of switch
 
 		return IOCTL_UNAVAILABLE;

@@ -3867,6 +3867,26 @@ namespace Base
 		return (int)result;
 	}
 
+	int _maEncodeImage(MAHandle placeHolder, MAHandle data, int mimeType, int width, int height, JNIEnv* jNIEnv, jobject jThis)
+	{
+		// Get the Java method
+		jclass cls = jNIEnv->GetObjectClass(jThis);
+		jmethodID methodID = jNIEnv->GetMethodID(cls, "maEncodeImage", "(IIIII)I");
+		if (methodID == 0)
+		{
+			return 0;
+		}
+
+		// Call the Java method
+		int result = jNIEnv->CallIntMethod(jThis, methodID, placeHolder, data, mimeType, width, height);
+
+		// Delete allocated memory
+		jNIEnv->DeleteLocalRef(cls);
+
+		return result;
+	}
+
+
 	// AUDIO API
 
 	int _maAudioDataCreateFromResource(

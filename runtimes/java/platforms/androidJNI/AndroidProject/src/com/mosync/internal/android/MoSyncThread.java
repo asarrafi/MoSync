@@ -49,17 +49,20 @@ import static com.mosync.internal.generated.MAAPI_consts.EVENT_TYPE_ALERT;
 
 import static com.mosync.internal.generated.MAAPI_consts.MA_RESOURCE_OPEN;
 import static com.mosync.internal.generated.MAAPI_consts.MA_RESOURCE_CLOSE;
-
+import static com.mosync.internal.generated.MAAPI_consts.MA_IMAGE_ENCODING_JPG;
+import static com.mosync.internal.generated.MAAPI_consts.MA_IMAGE_ENCODING_PNG;
 import static com.mosync.internal.generated.MAAPI_consts.MA_WAKE_LOCK_ON;
 import static com.mosync.internal.generated.MAAPI_consts.MA_WAKE_LOCK_OFF;
 
 
+import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileDescriptor;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.InputStream;
+import java.io.OutputStream;
 import java.nio.ByteBuffer;
 import java.nio.IntBuffer;
 import java.nio.channels.Channels;
@@ -2215,6 +2218,62 @@ public class MoSyncThread extends Thread
 			logError("maCreateImageFromData - "
 				+ "Out of memory, exception : " + e, e);
 			return RES_OUT_OF_MEMORY;
+		}
+		return RES_OK;
+	}
+
+	/**
+	 * Image Encoder function
+	 */
+	int maEncodeImage(int placeHolder, int dataHandle, int mimeType, int width, int height)
+	{
+		SYSLOG("maEncodeImage");
+
+		// Byte array to hold resource data. This is the data we will
+		// use to create the image.
+
+
+		Bitmap.Config conf = Bitmap.Config.ARGB_8888;
+		Bitmap tempBitmap = Bitmap.createBitmap(width, height, conf);
+
+		// If the handle is a binary resource it is in mBinaryResources.
+		ByteBuffer binData = mBinaryResources.get(dataHandle);
+		if (null != binData)
+		{
+			try
+			{
+				// Load binary data into image.
+				tempBitmap.copyPixelsFromBuffer(binData);
+			}
+			catch(Exception ex)
+			{
+				logError("maEncodeImage - "
+					+ "Couldn't read data, exception : " + ex, ex);
+				return RES_BAD_INPUT;
+			}
+		}
+
+
+		try
+		{
+			ByteArrayOutputStream imageStream = new ByteArrayOutputStream();
+			if(mimeType == MA_IMAGE_ENCODING_PNG)
+			{
+				tempBitmap.compress(Bitmap.CompressFormat.PNG, 8, imageStream);
+			}
+			else if(mimeType == MA_IMAGE_ENCODING_JPG)
+			{
+				tempBitmap.compress(Bitmap.CompressFormat.JPEG, 8, imageStream);
+			}
+
+			nativeCreateBinaryResource(placeHolder, imageStream.size());
+			ByteBuffer outputData = mBinaryResources.get(placeHolder);
+			outputData.put(imageStream.toByteArray());
+		}
+		catch (Throwable e)
+		{
+			logError("maEncodeImage - " + e, e);
+			return RES_BAD_INPUT;
 		}
 		return RES_OK;
 	}
