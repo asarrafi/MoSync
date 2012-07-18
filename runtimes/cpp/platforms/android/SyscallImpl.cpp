@@ -1933,6 +1933,15 @@ namespace Base
 			SYSLOG("maIOCtl_maWakeLock");
 			return _maWakeLock(a, mJNIEnv, mJThis);
 
+		case maIOCtl_maApplicationOpen:
+			SYSLOG("maIOCtl_maApplicationOpen");
+			return _maApplicationOpen(
+				SYSCALL_THIS->GetValidatedStr(a),
+				SYSCALL_THIS->GetValidatedStr(b),
+				SYSCALL_THIS->GetValidatedStr(c),
+				mJNIEnv,
+				mJThis);
+
 		case maIOCtl_maMessageBox:
 			SYSLOG("maIOCtl_maMessageBox");
 			return _maMessageBox(

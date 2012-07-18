@@ -87,6 +87,7 @@ import android.content.pm.ActivityInfo;
 import android.content.pm.PackageManager;
 import android.content.res.AssetFileDescriptor;
 import android.content.res.AssetManager;
+import android.content.ActivityNotFoundException;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
@@ -4328,6 +4329,42 @@ public class MoSyncThread extends Thread
 				}
 			}
 		});
+		return 1;
+	}
+
+	public int maApplicationOpen(final String application, final String message, final String messageName)
+	{
+		PackageManager pm = mContext.getPackageManager();
+		if(pm == null)
+			return -2;
+
+		Intent intent;
+
+		// Error in the Android documentation, the NameNotFoundException is not thrown..
+		//try
+		//{
+			intent = pm.getLaunchIntentForPackage(application);
+			// Added this check instead of the try-catch block
+			if(intent == null)
+				return -3;
+			intent.putExtra(messageName, message);
+		//}
+		//catch(PackageManager.NameNotFoundException e)
+		//{
+		//	return -3;
+		//}
+
+
+
+		try
+		{
+			mContext.startActivity(intent);
+		}
+		catch(ActivityNotFoundException e)
+		{
+			return -4;
+		}
+
 		return 1;
 	}
 

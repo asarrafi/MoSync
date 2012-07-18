@@ -2435,6 +2435,16 @@ interface MAAPI {
 			double horzAcc;
 			double vertAcc;
 			float alt;
+			/*
+			* The speed of the device in meters per second.
+			* A value of 0.0 means that the speed is unavailable or inaccurate.
+			*/
+			double speed;
+			/*
+			* The bearing/heading for the device in degress East of North.
+			* A value of 0.0 means that the bearing/heading is unavailable or inaccurate.
+			*/
+			double bearing;
 		}
 
 		constset int MA_LOC_ {
@@ -8850,6 +8860,16 @@ group CameraFunctions "Camera Functions" {
 			/// Turn off the wake lock.
 			OFF = 2;
 		}
+
+		/**
+		 * Opens an application and sends a string of information to it.
+		 * NOTE:
+		 * On Android the application name is the package name on the applications
+		 * you wanna open.
+		 * @param application, the application to start. In Android the activity.
+		 * @param message, the message to send the application when it has started.
+		 */
+		 int maApplicationOpen(in MAString application, in MAString message, in MAString messageName);
 
 group OpenGLES "OpenGLES" {
 #include "opengl_non_generated.idl"
