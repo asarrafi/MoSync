@@ -67,7 +67,7 @@ namespace NativeUI
      */
     int VideoView::setURL(const MAUtil::String& url)
     {
-        return this->setProperty(MAW_VIDEO_VIEW_URL, url);
+        return this->setProperty(MAW_VIDEO_VIEW_URL2, url);
     }
 
   /**
@@ -79,8 +79,7 @@ namespace NativeUI
      */
     int VideoView::setSmoothStreamingURL(const MAUtil::String& url)
     {
-        maAlert("setSmoothStreamingURL", "Streaming is set", "Ok", "Close", "cancel");
-        return this->setProperty(MAW_VIDEO_VIEW_STREAMING_URL, url);
+        return this->setProperty(MAW_VIDEO_VIEW_STURL, url);
     }
 
   /**

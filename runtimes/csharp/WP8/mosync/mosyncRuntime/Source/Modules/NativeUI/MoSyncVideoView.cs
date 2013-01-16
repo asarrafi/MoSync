@@ -136,12 +136,13 @@ namespace MoSync
                 }
             }
 
+
             /**
-             * Property for setting the url to a video file.
-             * set: a String containing the url to the video file.
-             */
-            [MoSyncWidgetProperty(MoSync.Constants.MAW_VIDEO_VIEW_URL)]
-            public String Url
+            * Property for setting the url to a video file.
+            * set: a String containing the url to the video file.
+            */
+            [MoSyncWidgetProperty(MoSync.Constants.MAW_VIDEO_VIEW_STURL)]
+            public String StUrl
             {
                 set
                 {
@@ -150,6 +151,62 @@ namespace MoSync
                     if (Uri.TryCreate(value, UriKind.Absolute, out mediaUri))
                     {
                         mMediaElement.SmoothStreamingSource = mediaUri;
+                    }
+                }
+            }
+
+
+
+
+
+            /**
+             * Property for setting the url to a video file.
+             * set: a String containing the url to the video file.
+             */
+            [MoSyncWidgetProperty(MoSync.Constants.MAW_VIDEO_VIEW_AUTH_URL)]
+            public String AuthUrl
+            {
+                set
+                {
+                    Uri mediaUri;
+                    // we try to create the uri from the string passed to the setter
+                    if (Uri.TryCreate(value, UriKind.Absolute, out mediaUri))
+                    {
+                        mMediaElement.LicenseAcquirer.LicenseServerUriOverride = mediaUri;
+                    }
+                }
+            }
+
+
+
+            /**
+ * Property for setting the url to a video file.
+ * set: a String containing the url to the video file.
+ */
+            [MoSyncWidgetProperty(MoSync.Constants.MAW_VIDEO_VIEW_AUTH_TOKEN)]
+            public String AuthToken
+            {
+                set
+                {
+                    mMediaElement.LicenseAcquirer.ChallengeCustomData = value;
+                }
+            }
+
+
+            /**
+             * Property for setting the url to a video file.
+             * set: a String containing the url to the video file.
+             */
+            [MoSyncWidgetProperty(MoSync.Constants.MAW_VIDEO_VIEW_URL2)]
+            public String Url
+            {
+                set
+                {
+                    Uri mediaUri;
+                    // we try to create the uri from the string passed to the setter
+                    if (Uri.TryCreate(value, UriKind.Absolute, out mediaUri))
+                    {
+                        mMediaElement.Source = mediaUri;
                     }
                 }
             }
@@ -196,50 +253,9 @@ namespace MoSync
                     }
                 }
             }
-            /**
-             * Property for setting the URL to SmoothStreaming Media Service.
-             * set: a String containing the path to the video file.
-             */
-            [MoSyncWidgetProperty(MoSync.Constants.MAW_VIDEO_VIEW_STREAMING_URL)]
-            public String StreamingUrl222
-            {
-                set
-                {
-                    Uri mediaUri;
-                    // we try to create the uri from the string passed to the setter
-                    if (Uri.TryCreate(value, UriKind.Relative, out mediaUri))
-                    {
-                        mMediaElement.SmoothStreamingSource = mediaUri;
-                    }
-                }
-            }
 
-            /**
-             * Property for setting the URL to SmoothStreaming Media Service.
-             * set: a String containing the path to the video file.
-             */
-            [MoSyncWidgetProperty(MoSync.Constants.MAW_VIDEO_VIEW_AUTH_URL)]
-            public String AuthUrl222
-            {
-                set
-                {
-                    Uri authUri;
-                    // we try to create the uri from the string passed to the setter
-                    if (Uri.TryCreate(value, UriKind.Relative, out authUri))
-                    {
-                        mMediaElement.LicenseAcquirer.LicenseServerUriOverride = authUri;
-                    }
-                }
-            }
 
-            [MoSyncWidgetProperty(MoSync.Constants.MAW_VIDEO_VIEW_AUTH_TOKEN)]
-            public String AuthToken222
-            {
-                set
-                {
-                    mMediaElement.LicenseAcquirer.ChallengeCustomData = value;
-                }
-            }
+ 
 
 
             /**

@@ -101,7 +101,7 @@ group VideoView "Video view" {
 			*	maWidgetSetProperty(videoViewHandle, MAW_VIDEO_VIEW_URL, "www.example.com/play.m3u8");
 			* \endcode
 			*/
-			URL = "url";
+			URL2 = "url";
 			/**
 			* @brief Sets the smooth streaming video url.
 			*
@@ -110,7 +110,7 @@ group VideoView "Video view" {
 			* @setonly
 			*
 			*/
-			STREAMING_URL = "streamingUrl";
+			STURL = "stUrl";
 
 			/**
 			* @brief Sets the smooth streaming video authentication url.
