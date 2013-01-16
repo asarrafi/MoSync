@@ -70,6 +70,43 @@ namespace NativeUI
         return this->setProperty(MAW_VIDEO_VIEW_URL, url);
     }
 
+  /**
+     * Set the video url.
+     * @param url A valid url to a video file.
+     * @return Any of the following result codes:
+     * - #MAW_RES_OK if the property could be set.
+     * - #MAW_RES_INVALID_PROPERTY_VALUE if the url value was invalid.
+     */
+    int VideoView::setSmoothStreamingURL(const MAUtil::String& url)
+    {
+        maAlert("setSmoothStreamingURL", "Streaming is set", "Ok", "Close", "cancel");
+        return this->setProperty(MAW_VIDEO_VIEW_STREAMING_URL, url);
+    }
+
+  /**
+     * Set the video url.
+     * @param url A valid url to a video file.
+     * @return Any of the following result codes:
+     * - #MAW_RES_OK if the property could be set.
+     * - #MAW_RES_INVALID_PROPERTY_VALUE if the url value was invalid.
+     */
+    int VideoView::setAuthURL(const MAUtil::String& url)
+    {
+        return this->setProperty(MAW_VIDEO_VIEW_AUTH_URL, url);
+    }
+
+  /**
+     * Set the video url.
+     * @param url A valid url to a video file.
+     * @return Any of the following result codes:
+     * - #MAW_RES_OK if the property could be set.
+     * - #MAW_RES_INVALID_PROPERTY_VALUE if the url value was invalid.
+     */
+    int VideoView::setAuthToken(const MAUtil::String& url)
+    {
+        return this->setProperty(MAW_VIDEO_VIEW_AUTH_TOKEN, url);
+    }
+
     /**
      * Play the video.
      * A valid path or url must be set before calling this method.

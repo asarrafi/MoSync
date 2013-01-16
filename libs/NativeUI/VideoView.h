@@ -86,6 +86,33 @@ namespace NativeUI
         virtual int setURL(const MAUtil::String& url);
 
         /**
+         * Set the video url.
+         * @param url A valid url to a video file.
+         * @return Any of the following result codes:
+         * - #MAW_RES_OK if the property could be set.
+         * - #MAW_RES_INVALID_PROPERTY_VALUE if the url value was invalid.
+         */
+        virtual int setSmoothStreamingURL(const MAUtil::String& url);
+
+        /**
+         * Set the video url.
+         * @param url A valid url to a video file.
+         * @return Any of the following result codes:
+         * - #MAW_RES_OK if the property could be set.
+         * - #MAW_RES_INVALID_PROPERTY_VALUE if the url value was invalid.
+         */
+        virtual int setAuthURL(const MAUtil::String& url);
+
+        /**
+         * Set the video url.
+         * @param url A valid url to a video file.
+         * @return Any of the following result codes:
+         * - #MAW_RES_OK if the property could be set.
+         * - #MAW_RES_INVALID_PROPERTY_VALUE if the url value was invalid.
+         */
+        virtual int setAuthToken(const MAUtil::String& url);
+
+        /**
          * Play the video.
          * A valid path or url must be set before calling this method.
          */

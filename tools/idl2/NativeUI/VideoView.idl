@@ -102,7 +102,35 @@ group VideoView "Video view" {
 			* \endcode
 			*/
 			URL = "url";
+			/**
+			* @brief Sets the smooth streaming video url.
+			*
+			* @validvalue Any valid streaming url.
+			*
+			* @setonly
+			*
+			*/
+			STREAMING_URL = "streamingUrl";
 
+			/**
+			* @brief Sets the smooth streaming video authentication url.
+			*
+			* @validvalue Any valid streaming url.
+			*
+			* @setonly
+			*
+			*/
+			AUTH_URL = "authUrl";
+
+			/**
+			* @brief Sets token for authentication used by PlayReady Service.
+			*
+			* @validvalue Any valid streaming url.
+			*
+			* @setonly
+			*
+			*/
+			AUTH_TOKEN = "authToken";
 			/**
 			* @brief Start,pause or stop the video playback.
 			*
@@ -198,6 +226,7 @@ group VideoView "Video view" {
 			* \endcode
 			*/
 			CONTROL = "control";
+
 		}
 	} // end of WidgetVideoViewProperties
 } // endo of VideoView

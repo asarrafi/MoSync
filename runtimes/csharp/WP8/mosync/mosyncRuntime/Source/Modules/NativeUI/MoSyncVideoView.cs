@@ -32,7 +32,8 @@ using System.Windows.Controls;
 using System.Windows.Threading;
 using System.Windows.Media;
 using System.Windows.Shapes;
-
+using Microsoft.Web.Media.SmoothStreaming;
+using Microsoft.Phone.Tasks;
 namespace MoSync
 {
     namespace NativeUI
@@ -44,15 +45,16 @@ namespace MoSync
          */
         public class VideoView : WidgetBaseWindowsPhone
         {
-            private MediaElement mMediaElement;
+            private SmoothStreamingMediaElement mMediaElement;
 
             /**
              * Constructor
              */
             public VideoView()
             {
-                mMediaElement = new MediaElement();
-
+                mMediaElement = new SmoothStreamingMediaElement();
+                mMediaElement.AutoPlay = false;
+                
                 mView = mMediaElement;
 
                 /**
@@ -147,7 +149,7 @@ namespace MoSync
                     // we try to create the uri from the string passed to the setter
                     if (Uri.TryCreate(value, UriKind.Absolute, out mediaUri))
                     {
-                        mMediaElement.Source = mediaUri;
+                        mMediaElement.SmoothStreamingSource = mediaUri;
                     }
                 }
             }
@@ -194,6 +196,51 @@ namespace MoSync
                     }
                 }
             }
+            /**
+             * Property for setting the URL to SmoothStreaming Media Service.
+             * set: a String containing the path to the video file.
+             */
+            [MoSyncWidgetProperty(MoSync.Constants.MAW_VIDEO_VIEW_STREAMING_URL)]
+            public String StreamingUrl222
+            {
+                set
+                {
+                    Uri mediaUri;
+                    // we try to create the uri from the string passed to the setter
+                    if (Uri.TryCreate(value, UriKind.Relative, out mediaUri))
+                    {
+                        mMediaElement.SmoothStreamingSource = mediaUri;
+                    }
+                }
+            }
+
+            /**
+             * Property for setting the URL to SmoothStreaming Media Service.
+             * set: a String containing the path to the video file.
+             */
+            [MoSyncWidgetProperty(MoSync.Constants.MAW_VIDEO_VIEW_AUTH_URL)]
+            public String AuthUrl222
+            {
+                set
+                {
+                    Uri authUri;
+                    // we try to create the uri from the string passed to the setter
+                    if (Uri.TryCreate(value, UriKind.Relative, out authUri))
+                    {
+                        mMediaElement.LicenseAcquirer.LicenseServerUriOverride = authUri;
+                    }
+                }
+            }
+
+            [MoSyncWidgetProperty(MoSync.Constants.MAW_VIDEO_VIEW_AUTH_TOKEN)]
+            public String AuthToken222
+            {
+                set
+                {
+                    mMediaElement.LicenseAcquirer.ChallengeCustomData = value;
+                }
+            }
+
 
             /**
              * Property for getting the duration of the current video
@@ -250,6 +297,8 @@ namespace MoSync
             // play the video and MAW_VIDEO_VIEW_STATE_PLAYING
             private void playVideo()
             {
+
+
                 // play it
                 mMediaElement.Play();
 
