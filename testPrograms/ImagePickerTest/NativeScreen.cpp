@@ -155,7 +155,7 @@ void NativeScreen::customEvent(const MAEvent& event)
 
 	        if ( strcmp(value.c_str(),"true") == 0 )
 	        {
-	        	resCode = handleImageData(event.imagePickerItem);
+				resCode = handleImageData(event.imagePickerItem);
 			}
 			else
 			{
@@ -165,7 +165,7 @@ void NativeScreen::customEvent(const MAEvent& event)
 	        if (resCode == RES_OK)
 				setLabelText(mLabel, "Preview is available");
 	        else
-	        	setLabelText(mLabel, "Preview is not available");
+				setLabelText(mLabel, "Preview is not available");
 		}
 		else
 		{
